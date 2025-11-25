@@ -1,0 +1,22 @@
+.lineup-entries-container{
+    max-height: 650px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 6px;
+    scrollbar-width: thin; /* Firefox */
+}
+.lineup-entries-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lineup-entries-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.lineup-entries-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
