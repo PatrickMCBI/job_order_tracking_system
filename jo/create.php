@@ -1,13 +1,5 @@
 <?php
-session_start();
 include __DIR__ . "/../config/db.php";
-
-if (!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "encoder") {
-    header("Location: ../auth/login.php");
-    exit();
-}
-
-include __DIR__ . "/../templates/header.php";
 
 
 // ------------------- GENERATE JO NUMBER FOR DISPLAY -------------------
@@ -138,20 +130,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-
-
-<h2>Create Job Order</h2>
-
 <form method="POST" enctype="multipart/form-data" class="row g-3">
-  <div class="row">
+  <div class="row p-3">
 
-    <div class="col-md-6">
-
-        <div class="col-md-12">
-            <label class="form-label fw-bold">JO Number</label>
-            <input type="text" class="form-control" value="<?php echo htmlspecialchars($display_jo_number); ?>" readonly>
-        </div>
-
+    <div class="col-md-4">
         <div class="col-md-12">
             <label class="form-label">Customer</label>
             <input type="text" class="form-control" name="customer_name" required>
@@ -202,8 +184,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 
     <!-- RIGHT SIDE LINEUP -->
-    <div class="col-md-6">
-        <h4>JO LINEUP</h4>
+    <div class="col-md-8">
+        <h3>JO Number : <?php echo htmlspecialchars($display_jo_number); ?></h3>        
 
         <div class="row mt-2 lineup-row">
             <div class="col-md-1 d-flex align-items-center fw-bold lineup-number">#</div>
@@ -299,4 +281,3 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
-<?php include __DIR__ . "/../templates/footer.php"; ?>

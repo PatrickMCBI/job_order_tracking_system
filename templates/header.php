@@ -18,11 +18,11 @@ $stmt->close();
     <link rel="stylesheet" href=" /job_order_tracking_system/assets/css/main.css ">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5b6d87;">
       <div class="container">
-        <a class="navbar-brand" href="/job_order_tracking_system/index.php">Job Order System</a>
+        <a class="navbar-brand" href="/job_order_tracking_system/index.php" style="color: white;">Job Order System</a>
         <div class="d-flex">
-          <a class="btn btn-outline-primary me-2 position-relative" href="/job_order_tracking_system/notifications.php">Notifications
+          <a class="position-relative" href="/job_order_tracking_system/notifications.php"><img src="../assets/img/bell-z.png" alt="notifications">
           <?php if($unread_count>0): ?><span class="badge bg-danger"><?= $unread_count ?></span><?php endif; ?></a>
           
           

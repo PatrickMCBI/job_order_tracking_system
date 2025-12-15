@@ -9,15 +9,15 @@ include '../templates/header.php';
     <div class="row">
       
       <!-- Sidebar -->
-      <nav class="col-md-3 col-lg-2 bg-light p-3 vh-100 d-flex flex-column align-items-center">
+      <nav class="col-md-3 col-lg-2 p-3 vh-100 d-flex flex-column align-items-center" style="background-color: #1d2935; color: white;">
         
         <!-- Profile image -->
-        <img src="https://via.placeholder.com/100" 
+        <img src="../assets/img/default_profile.png" 
              class="rounded-circle mb-3" 
              alt="Profile Image">
         
         <!-- Profile name -->
-        <h5 class="mb-4"><?= htmlspecialchars($_SESSION['user']['username']) ?></h5>
+        <h5 class="mb-4">Hello, <?= htmlspecialchars($_SESSION['user']['username']) ?>!</h5>
 
         <!-- Navigation links -->
         <ul class="nav flex-column w-100">
@@ -33,7 +33,23 @@ include '../templates/header.php';
       <!-- Content -->
       <main class="col-md-9 col-lg-10 p-4">
         <h1>Encoder Dashboard</h1>
-        <a href="../jo/create.php" class="btn btn-primary mb-3">Create New Job Order</a>
+        <!-- <a href="../jo/create.php" class="btn btn-primary mb-3">Create New Job Order</a> -->
+        <a href="#" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createJobOrderModal"> Create Job Order </a>
+
+        <!-- Modal -->
+        <div class="modal fade" id="createJobOrderModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Job Order</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <?php include "../jo/create.php"; ?>
+                </div>
+                </div>
+            </div>
+        </div>
 
         <h3>Pending Job Orders</h3>
         <table class="table table-striped">
@@ -42,14 +58,16 @@ include '../templates/header.php';
         <?php
         include '../config/db.php';
         $stmt = $conn->query("SELECT * FROM job_orders ORDER BY created_at DESC");
+        $counter = 1;
         while($row = $stmt->fetch_assoc()){
             echo "<tr>
-            <td>{$row['id']}</td>
+            <td>{$counter}</td>
             <td>{$row['customer_name']}</td>
             <td>{$row['status']}</td>
             <td>{$row['deadline']}</td>
             <td><a href='../jo/view.php?id={$row['id']}' class='btn btn-sm btn-info'>View</a></td>
             </tr>";
+            $counter++;
         }
         ?>
         </tbody>
