@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $lineupSQL->close();
 
     $_SESSION["success"] = "Job Order #{$jo_number} created successfully.";
-    header("Location: list.php");
+    header("Location: encoder.php");
     exit();
 }
 ?>
